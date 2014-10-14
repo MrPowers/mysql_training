@@ -49,12 +49,32 @@ Don't know what this means.
 
 a) Get all student not taking 'Physics' class.
 
+```sql
 select distinct(s.first_name) from student s
 inner join registration r on s.id = r.student_id
 inner join class c on r.class_id = c.id
 where c.class_name != "Physics";
+```
 
 
 b) Find out who takes most classes
 
+```sql
+select s.first_name, count(class_id) num_classes from student s
+inner join registration r on s.id = r.student_id
+inner join class c on r.class_id = c.id
+group by s.id
+order by num_classes desc;
+```
+
 c) Find out which student doesn't take any class.
+
+```sql
+select * from student s
+left join registration r on s.id = r.student_id
+where r.student_id IS NULL;
+```
+
+
+7.
+
