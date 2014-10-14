@@ -76,5 +76,10 @@ where r.student_id IS NULL;
 ```
 
 
-7.
+7. There are employee and award tables. Get all employees who get some award along with his/her latest award. Only show latest award(s). The answer must be in a script named ‘answer_to_award_question.sql’. Please don't specify database name in the script so that the grader can test it in appropriate DB.
 
+```sql
+select e.first_name, max(a.award_date) latest_award from award a
+inner join employee e on a.employee_id = e.id
+group by e.id;
+```
